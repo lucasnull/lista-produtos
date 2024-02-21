@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/navbar";
+import { WishlistProvider } from "@/context/WishListContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,8 +17,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="pt-br">
+      <body className={inter.className}>
+        <Navbar
+          links={[
+            { href: "/", label: "Home" },
+            { href: "/ItemsList", label: "Item List" },
+            { href: "/WishList", label: "Wish List" },
+            { href: "/AddProduct", label: "Add Product" },
+          ]}
+        />
+        <WishlistProvider>{children}</WishlistProvider>
+      </body>
     </html>
   );
 }
